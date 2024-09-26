@@ -1,0 +1,7 @@
+<archetype>
+  <id>testestarget</id>
+  <sources>
+    <source>src/main/java/Atividade1.java</source>
+  </sources>
+ 
+</archetype>
