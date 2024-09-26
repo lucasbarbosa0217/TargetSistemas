@@ -8,12 +8,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Atividade3 {
     public static void main(String[] args) {
-        File jsonFile = new File("src/main/resources/faturamento_mensal.json");
+        File jsonFile = new File("src/main/resources/dados.json");
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            Map<String, List<Map<String, Double>>> jsonData = objectMapper.readValue(jsonFile, Map.class);
-            List<Map<String, Double>> faturamentoList = jsonData.get("faturamento_mensal");
+            List<Map<String, Double>> faturamentoList = objectMapper.readValue(jsonFile, List.class);
 
             if (faturamentoList.isEmpty()) {
                 System.out.println("Não há dados de faturamento disponíveis.");
@@ -26,7 +25,7 @@ public class Atividade3 {
             int diasMaiorQueMedia = 0;
 
             for (Map<String, Double> faturamentoDia : faturamentoList) {
-                double faturamento = faturamentoDia.get("faturamento");
+                double faturamento = faturamentoDia.get("valor");
                 soma += faturamento;
 
                 if (faturamento < menor) {
@@ -40,7 +39,7 @@ public class Atividade3 {
             double media = soma / faturamentoList.size();
 
             for (Map<String, Double> faturamentoDia : faturamentoList) {
-                if (faturamentoDia.get("faturamento") > media) {
+                if (faturamentoDia.get("valor") > media) {
                     diasMaiorQueMedia++;
                 }
             }
